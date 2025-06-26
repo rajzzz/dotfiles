@@ -1,3 +1,0 @@
-return{
-  colorsceme = "catppuccin",
-}
