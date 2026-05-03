@@ -1,69 +1,165 @@
 {
-    "layer": "top",
-    "position": "top",
-    "mod": "dock",
-    "exclusive": true,
-    "passthrough": false,
-    "gtk-layer-shell": true,
-	
-    "include": [
-		// "~/.config/waybar/modules.jsonc",
-		"~/.config/waybar/modules/*.jsonc",
-		"~/.config/waybar/modules/custom/*.jsonc",
-		"~/.config/waybar/modules/extra/*.jsonc",
-		"~/.config/waybar/modules/hyprland/*.jsonc"
-	],
-
+    "margin": "5 20 0 20",
     "modules-left": [
-		"clock",
-		"network", 
-		"bluetooth",
-		"hyprland/window"
-	],
+        "custom/weather",
+        "custom/spotify_prev",
+        "custom/spotify",
+        "custom/spotify_next"
+        // "custom/cava"
+    ],
     "modules-center": [
-		"custom/rofi",
-		"hyprland/workspaces",
-		"group/exit",
-		"custom/wol",
-		"custom/tailscale",
-		"custom/updates",
-		"custom/github"
-	],
+        "custom/github",
+        "clock",
+        "custom/updates"
+    ],
     "modules-right": [
-		"custom/media",
-		"group/hardware",
-		"group/audio",
-		"tray",
-		"custom/swaync"
-	],
-
-	// Group Hardware
-	"group/hardware": {
-		"orientation": "horizontal",
-		"modules":[
-			"temperature",
-			"battery",
-			"power-profiles-daemon",
-			"custom/wl-gammarelay-temperature",
-			"backlight"
-		]
-	},
-
-	// Group IO Audio
-	"group/audio": {
-		"orientation": "horizontal",
-		"modules": [
-			"pulseaudio",
-			"pulseaudio#microphone"
-		]
-	},
-
-	// Group Exit
-	"group/exit": {
-		"orientation": "horizontal",
-		"modules": [
-			"custom/power_btn",
-			"custom/lock_screen"
-		]
-	}
+        "network",
+        "pulseaudio",
+        // "backlight",
+        "battery",
+        "tray",
+        "custom/swaync"
+    ],
+    //***************************
+    //*  Modules configuration  *
+    //***************************
+    "custom/updates": {
+        "format": " {}",
+        "return-type": "json",
+        "escape": false,
+        "exec": "~/.config/waybar/scripts/getupdates.sh",
+        "interval": 3600,
+        "signal": 8,
+        "tooltip": true,
+        "on-click": "kitty --title 'Install Updates' sh -c ~/.config/waybar/scripts/installupdates.sh",
+        "on-click-right": "kitty --title 'Installed Packages' sh -c ~/.config/waybar/scripts/listpackages.sh"
+    },
+    "custom/weather": {
+        "format": "{}",
+        "return-type": "json",
+        "exec": "~/.config/waybar/scripts/weather.sh",
+        "interval": 900,
+        "tooltip": true
+    },
+    "custom/spotify_prev": {
+        "format": "{}",
+        "interval": "once",
+        "exec": "printf ''",
+        "exec-if": "command -v playerctl",
+        "on-click": "playerctl --player=spotify previous",
+        "tooltip": true,
+        "tooltip-format": "Previous track"
+    },
+    "custom/spotify": {
+        "format": "{}",
+        "return-type": "json",
+        "escape": false,
+        "interval": 5,
+        "exec-if": "command -v playerctl",
+        "on-click": "playerctl --player=spotify play-pause",
+        "on-click-right": "sh -c \"if command -v spotify >/dev/null; then spotify; elif flatpak info com.spotify.Client >/dev/null 2>&1; then flatpak run com.spotify.Client; else notify-send 'Spotify' 'Install spotify (native) or com.spotify.Client flatpak'; fi\"",
+        "on-scroll-up": "playerctl --player=spotify next",
+        "on-scroll-down": "playerctl --player=spotify previous",
+        "exec": "~/.config/waybar/scripts/spotify.sh"
+    },
+    "custom/spotify_next": {
+        "format": "{}",
+        "interval": "once",
+        "exec": "printf ''",
+        "exec-if": "command -v playerctl",
+        "on-click": "playerctl --player=spotify next",
+        "tooltip": true,
+        "tooltip-format": "Next track"
+    },
+    "custom/github": {
+        "format": " {}",
+        "return-type": "json",
+        "exec": "~/.config/waybar/scripts/github.sh",
+        "interval": 60,
+        "on-click": "xdg-open https://github.com/notifications",
+        "tooltip": true
+    },
+    "clock": {
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "format": "{:%a | %d %b | %I:%M %p}"
+    },
+    "custom/cava": {
+        "format": "{}",
+        "exec-if": "command -v cava",
+        "exec": "~/.config/waybar/scripts/cava.sh"
+    },
+    "network": {
+        "format-wifi": "󰤨  {essid} ({signalStrength}%)",
+        "format-ethernet": "󰈁 Ethernet",
+        "format-disconnected": "󰤭 Disconnected",
+        "on-click": "~/.config/waybar/scripts/nmtui.sh"
+    },
+    "pulseaudio": {
+        "reverse-scrolling": 1,
+        "format": "{volume}% {icon}",
+        "format-bluetooth": "{volume}% {icon}",
+        "format-muted": " {format_source}",
+        "format-source-muted": "Mute 🚫",
+        "format-icons": {
+            "headphone": "",
+            "default": [
+                "🕨",
+                "🕩",
+                "🕪"
+            ]
+        },
+        "on-click": "pavucontrol",
+        "min-length": 13
+    },
+    "backlight": {
+        "device": "intel_backlight",
+        "format": "{percent}% {icon}",
+        "format-icons": [
+            "🌑",
+            "🌒",
+            "🌓",
+            "🌔",
+            "🌕"
+        ],
+        "min-length": 5
+    },
+    "battery": {
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{icon} {capacity}%",
+        "format-charging": " {capacity}%",
+        "format-plugged": " {capacity}%",
+        "format-alt": "{time} {icon}",
+        "min-length": 8,
+        "format-icons": [
+            "▁",
+            "▂",
+            "▃",
+            "▄",
+            "▅"
+        ]
+    },
+    "tray": {
+        "icon-size": 16,
+        "spacing": 4
+    },
+    "custom/swaync": {
+        "format": "{icon}",
+        "format-icons": {
+            "notification": "",
+            "none": "",
+            "dnd-notification": "",
+            "dnd-none": ""
+        },
+        "return-type": "json",
+        "exec-if": "command -v swaync-client",
+        "exec": "swaync-client -swb",
+        "on-click": "swaync-client -t -sw",
+        "on-click-right": "swaync-client -d -sw",
+        "on-click-middle": "swaync-client -C",
+        "tooltip": true,
+        "tooltip-format": "Notifications\nLeft: open panel\nRight: toggle DND\nMiddle: clear all"
+    }
 }

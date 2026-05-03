@@ -94,8 +94,20 @@ function fshow() {
 FZF-EOF"
 }
 
+export MANPAGER='nvim +Man!'
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 export PATH=$PATH:/home/raj/.spicetify
+
+# pnpm
+export PNPM_HOME="/home/raj/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+
+
+alias unsafechrome="chromium --ozone-platform=x11 --enable-unsafe-webgpu --ignore-gpu-blocklist --disable-gpu-sandbox --enable-features=Vulkan,UseSkiaRenderer,VulkanFromANGLE --use-vulkan=native --use-angle=vulkan --disable-zero-copy-tab-capture"

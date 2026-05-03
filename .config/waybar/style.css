@@ -1,301 +1,422 @@
 * {
     border: none;
     border-radius: 0;
-    font-family: "Fira Code",  FontAwesome;
-    font-weight: bold;
+    font-family: JetBrainsMono Nerd Font, monospace;
     font-size: 14px;
-    min-height: 0;
+    min-height: 0px;
 }
 
 window#waybar {
-    background-color: rgba(0, 0, 0, 0);
-    border-bottom: 0.5px solid #fffff0;
-    background: rgba(21, 18, 27, 0.6);
-    color: #cdd6f4;
-    transition-property: background-color;
-    transition-duration: .5s;
+    background: transparent;
 }
 
 window#waybar.hidden {
     opacity: 0.2;
 }
 
-tooltip {
-    background: rgba(8, 7, 10, 0.8);
-    border-radius: 18px;
-    border-width: 2px;
-    border-style: solid;
-    border-color: #11111b;
+#custom-updates {
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 5px 20px 5px 20px;
+    border: solid 3px;
+    border-color: #484a4a;
+    transition: background 0.3s ease,
+	border-radius 0.3s ease;
+    color: #ffffff;
+    background: #0f1c17;
 }
 
-
-#workspaces {
-    background: rgba(8, 7, 10, 0.6);
-    margin: 5px 5px 5px 5px;
-    padding: 6px 5px;
-    border-radius: 18px;
-    margin-top: 7px;
-    margin-bottom: 7px;
-    /* margin-left: 5px;
-    margin-right: 5px; */
-    border: 0.5px solid #032412;
-}
-
-#workspaces button {
-    padding: 0px 5px;
-    margin: 0px 3px;
-    border-radius: 16px;
-    color: #cdd6f4;
-    background-color: #2f354a;
-    transition: all 0.3s ease-in-out;
-}
-
-
-#workspaces button.empty {
-    opacity: 0.4;
-}
-
-#workspaces button.active {
-    color: #2f354a;
-    background-color: #cdd6f4;
-    border-radius: 16px;
-    min-width: 50px;
-    background-size: 400% 400%;
-    transition: all 0.3s ease-in-out;
-    /*opacity: 1.0;*/
-}
-
-#workspaces button.urgent {
-    background-color: #cdd6f4;
-    color: #2f354a;
-    padding: 0 0 0 5px;
-    border-radius: 16px;
-    min-width: 40px;
-    background-size: 300% 300%;
-}
-
-#workspaces button:hover {
-    background-color: #cdd6f4;
-    color: #2f354a;
-    border-radius: 16px;
-    min-width: 50px;
-    background-size: 400% 400%;
-}
-
-#clock,
-#network,
-#bluetooth,
-#window,
-#custom-rofi,
-#custom-power_btn,
-#custom-lock_screen,
-#custom-wol,
-#custom-tailscale,
-#custom-updates,
-#custom-github,
-#custom-media,
-#power-profiles-daemon,
-#temperature,
-#battery,
-#backlight,
-#custom-wl-gammarelay-temperature,
-#pulseaudio,
-#tray,
-#custom-swaync {
-    background-color: #2f354a;
-    margin: 0 0 0 0;
-    padding: 0px 7px 0px 7px;
-    border-radius: 18px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    border: none;
-}
-
-
-
-/* LEFT MODULES */
-
-
-#clock {
-    border-radius: 18px 0 0 18px;
-    color: #fab387;
-    margin-left: 5px;
-}
-
-#network {
-    border-radius: 0px 0 0 0px;
-    color: #f9e2af;
-}
-
-#network.disabled {
-    color: #f9e2af;
-}
-
-
-#bluetooth {
-    border-radius: 0 18px 18px 0px;
-    color: #89b4fa;
-} 
-
-#window {
-    background: #cdd6f4;
-    color: #1e1e2e;
-    border-radius: 18px;
-    margin-left: 20px;
-    margin-right: 20px;
-}
-
-window#waybar.empty #window {
-    background-color: transparent;
-}
-
-
-
-/* CENTER MODULES */
-
-
-#custom-rofi {
-    opacity: 0.6
-}
-
-#custom-power_btn {
-    color :#9c8bfd;
-    border-radius: 18px 0px 0px 18px;
-}
-
-#custom-lock_screen {
-    color :#9c8bfd;
-    border-radius: 0px 0px 0px 0px;
-}
-
-#custom-tailscale,
-#custom-wol {
-    border-radius: 0px 0px 0px 0px;    
-}
-#custom-tailscale.green,
-#custom-wol.green {
-    color: #a6e3a1;
-}
-#custom-tailscale.red,
-#custom-wol.red {
-    color: #fd8b9e; 
-}
-
-#custom-updates.green {
-    color: #a6e3a1;
+#custom-updates:hover {
+	border-radius: 20px 5px 20px 5px;
+	background: #484a4a;
 }
 
 #custom-updates.yellow {
-    color: #e8db92;
+    border-color: #d8b656;
 }
 
 #custom-updates.red {
-    color: #eba0ac;
+    border-color: #c45252;
+    color: #ffb3b3;
 }
 
-#custom-github {
-    border-radius: 0px 18px 18px 0px;
-}
-
-#custom-github.green {
-    color: #a6e3a1;
-}
-
-#custom-github.yellow {
-    color: #e8db92;
-}
-
-#custom-github.red {
-    color: #eba0ac;
-}
-
-
-
-/* RIGHT MODULES */
-
-
-#custom-media {
+#custom-weather,
+#custom-github,
+#custom-spotify_prev,
+#custom-spotify_next {
+    margin-left: 8px;
+    padding-left: 10px;
     padding-right: 10px;
-    margin-right: 10px;
-    margin-left: 10px;
+    border-radius: 5px 20px 5px 20px;
+    border: solid 3px;
+    border-color: #484a4a;
+    transition: background 0.3s ease-in-out,
+    border-radius 0.3s ease-in-out;
+    color: #ffffff;
+    background: #0f1c17;
 }
 
-#custom-media.custom-spotify {
-    color: #1db954;
+#custom-spotify_prev,
+#custom-spotify_next {
+    margin-left: 4px;
+    margin-right: 0;
+    padding-left: 4px;
+    padding-right: 4px;
+    border: none;
+    border-color: transparent;
+    background: transparent;
+    color: #aeb8c2;
+    min-width: 0;
 }
 
-#temperature {
-    color: #8be9fd;
-    border-radius: 18px 0px 0px 18px;
+#custom-spotify_prev:hover,
+#custom-spotify_next:hover {
+    background: transparent;
+    color: #ffffff;
 }
 
-#temperature.critical {
-    color: #eba0ac;
+#custom-weather {
+    border-color: #5a6d7f;
+    background: linear-gradient(135deg, #132231 0%, #0f1c17 100%);
+    min-width: 88px;
 }
 
-#battery {
-    border-radius: 0px 0px 0px 0px;
-    padding: 0px 0px 0px 7px;
-    color: #a6e3a1;
+#custom-weather.sunny {
+    border-color: #d9a441;
+    color: #ffe5a7;
+    background: linear-gradient(135deg, #3b2d12 0%, #1d2013 100%);
 }
 
-#battery.warning {
-    color: #e8db92;
+#custom-weather.cloudy {
+    border-color: #7e8ca0;
+    color: #d7e0ef;
+    background: linear-gradient(135deg, #1c2630 0%, #141b23 100%);
 }
 
-#battery.critical {
-    color: #eba0ac;
+#custom-weather.rain {
+    border-color: #4b89d8;
+    color: #cce3ff;
+    background: linear-gradient(135deg, #132740 0%, #102033 100%);
 }
 
-#power-profiles-daemon{
-    border-radius: 0px 0px 0px 0px;
-    padding: 0px 0px 0px 7px;
+#custom-weather.storm {
+    border-color: #8a6adf;
+    color: #e4d8ff;
+    background: linear-gradient(135deg, #26213c 0%, #1a172a 100%);
 }
 
-#power-profiles-daemon.power-saver{
-    color: #a6e3a1;
+#custom-weather.snow {
+    border-color: #9bb7d9;
+    color: #e9f4ff;
+    background: linear-gradient(135deg, #2a3647 0%, #1e2938 100%);
 }
 
-#power-profiles-daemon.balanced{
-    color: #8be9fd;
+#custom-weather.fog {
+    border-color: #88929f;
+    color: #d9dde4;
+    background: linear-gradient(135deg, #2b3138 0%, #1f242a 100%);
 }
 
-#power-profiles-daemon.performance{
-    color: #e8db92;
+#custom-weather.hot {
+    border-color: #e0855b;
+    color: #ffd8c6;
+    background: linear-gradient(135deg, #3b2219 0%, #2a1a14 100%);
 }
 
-#custom-wl-gammarelay-temperature {
-    border-radius: 0px 0px 0px 0px;
-    padding: 0px 0px 0px 7px;
-    color: #d99280;
+#custom-weather.cold {
+    border-color: #69a0e6;
+    color: #dcefff;
+    background: linear-gradient(135deg, #19283b 0%, #142031 100%);
 }
 
-#backlight {
-    border-radius: 0px 18px 18px 0px;
-    margin-right: 5px
-}
-
-#pulseaudio {
-    border-radius: 18px 0 0 18px;
-    color: #89b4fa;
-}
-
-#pulseaudio.microphone {
-    border-radius: 0 18px 18px 0;
-    color: #cba6f7;
-    margin-right: 5px;
-}
-
-#tray {
-    border-radius: 18px 0 0 18px;
+#custom-weather:hover,
+#custom-github:hover,
+#custom-spotify_prev:hover,
+#custom-spotify_next:hover {
+    border-radius: 20px 5px 20px 5px;
+    background: #484a4a;
 }
 
 #custom-swaync {
-    border-radius: 0px 18px 18px 0px;
-    margin-right: 5px;
+    margin-left: 8px;
+    padding-left: 10px;
+    padding-right: 10px;
+    min-width: 36px;
+    border-radius: 5px 20px 5px 20px;
+    border: solid 3px;
+    border-color: #5f6974;
+    color: #d8dee9;
+    background: #0f1c17;
+    transition: background 0.25s ease, border-color 0.25s ease, color 0.25s ease;
 }
 
-#custom-updates {
-    border-radius: 0px 0px 0px 0px;
-    padding: 0px 0px 0px 7px;
+#custom-swaync:hover {
+    border-radius: 20px 5px 20px 5px;
+    border-color: #8fa8c2;
+    color: #f1f5fb;
+    background: #484a4a;
+}
+
+#custom-swaync.none {
+    border-color: #596472;
+    color: #bcc5d1;
+}
+
+#custom-swaync.notification {
+    border-color: #7ca2d9;
+    color: #dcebff;
+    background: #0f1c17;
+}
+
+#custom-swaync.dnd-none {
+    border-color: #8e6bbf;
+    color: #d8c7f0;
+    background: #0f1c17;
+}
+
+#custom-swaync.dnd-notification {
+    border-color: #c9779c;
+    color: #ffd8e9;
+    background: #0f1c17;
+}
+
+#custom-spotify {
+	margin-left: 8px;
+	padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 5px 20px 5px 20px;
+    border: solid 3px;
+    border-color: #5fa876;
+    transition: background 0.3s ease-in-out,
+	border-radius 0.3s ease-in-out;
+    color: #ffffff;
+    background: linear-gradient(125deg, #1f7a44 0%, #0f1c17 65%, #0a1210 100%);
+}	
+
+#custom-spotify.spotify-default {
+    border-color: #52c276;
+    background: linear-gradient(125deg, #2b9b56 0%, #16663b 48%, #0f1c17 100%);
+}
+
+#custom-spotify.spotify-red {
+    border-color: #ff7b72;
+    background: linear-gradient(125deg, #b63333 0%, #742222 48%, #201112 100%);
+}
+
+#custom-spotify.spotify-orange {
+    border-color: #ffad5c;
+    background: linear-gradient(125deg, #bc5e1f 0%, #7d3f14 48%, #24160f 100%);
+}
+
+#custom-spotify.spotify-magenta {
+    border-color: #e88df1;
+    background: linear-gradient(125deg, #8d2d98 0%, #5f1d68 48%, #1f1224 100%);
+}
+
+#custom-spotify.spotify-purple {
+    border-color: #b19aff;
+    background: linear-gradient(125deg, #6240c8 0%, #402a84 48%, #181329 100%);
+}
+
+#custom-spotify.spotify-blue {
+    border-color: #74b6ff;
+    background: linear-gradient(125deg, #2d6ec7 0%, #224d91 48%, #121b2b 100%);
+}
+
+#custom-spotify.spotify-teal {
+    border-color: #72d5cc;
+    background: linear-gradient(125deg, #2e8f87 0%, #1f665f 48%, #102221 100%);
+}
+
+#custom-spotify.spotify-green {
+    border-color: #67e688;
+    background: linear-gradient(125deg, #2b9548 0%, #1f6f37 48%, #111f16 100%);
+}
+
+#custom-spotify.spotify-muted {
+    border-color: #a6b2be;
+    background: linear-gradient(125deg, #5a6773 0%, #404b56 48%, #161b1f 100%);
+}
+
+#custom-spotify.spotify-dark {
+    border-color: #7d8992;
+    background: linear-gradient(125deg, #313941 0%, #232a30 48%, #0d0f11 100%);
+}
+
+#custom-spotify:hover {
+	border-radius: 20px 5px 20px 5px;
+	border-color: #b7ffd0;
+}
+
+
+#clock {
+    padding-left: 16px;
+    padding-right: 16px;
+    border-radius: 5px 5px 20px 20px;
+    border: solid 3px;
+    border-color: #484a4a;
+    transition: background 0.3s ease,
+	border-radius 0.3s ease;
+    color: #ffffff;
+    background: #0f1c17;
+}
+
+#clock:hover {
+	border-radius: 20px 20px 5px 5px;
+	background: #484a4a;
+}
+
+#custom-cava {
+	margin-left: 8px;
+}	
+
+#network {
+	margin-right: 8px;
+	padding-right: 15px;
+	padding-left: 15px;
+	border-radius: 20px 5px 20px 5px;
+    border: solid 3px;
+    border-color: #484a4a;
+    transition: background 0.3s ease,
+	border-radius 0.3s ease;
+    color: #ffffff;
+    background: #0f1c17;
+}
+
+
+#network:hover {
+	border-radius: 5px 20px 5px 20px;
+	background: #484a4a;
+}
+
+#pulseaudio {
+    margin-right: 8px;
+    border-radius: 20px 5px 20px 5px;
+    padding-left: 0px;
+    padding-right: 0px;
+    border: solid 3px;
+    border-color: #484a4a;
+    transition: background 0.3s ease,
+	border-radius 0.3s ease;
+    color: #ffffff;
+    background: #0f1c17;
+}
+
+#pulseaudio:hover {
+	border-radius: 5px 20px 5px 20px;
+	background: #484a4a;
+}
+
+#backlight {
+    margin-right: 8px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 20px 5px 20px 5px;
+    border: solid 3px;
+    border-color: #484a4a;
+    transition: background 0.3s ease,
+	border-radius 0.3s ease;
+    color: #ffffff;
+    background: #0f1c17;
+}
+
+#backlight:hover {
+	border-radius: 5px 20px 5px 20px;
+	background: #484a4a;
+}
+
+
+#battery {
+    margin-right: 8px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 20px 5px 20px 5px;
+    border: solid 3px;
+    border-color: #484a4a;
+    transition: background 0.3s ease,
+	border-radius 0.3s ease;
+    color: #ffffff;
+    background: #0f1c17;
+    min-width: 76px;
+}
+
+#battery:hover {
+	border-radius: 5px 20px 5px 20px;
+	background: #484a4a;
+}
+
+
+#battery.charging {
+    color: #ffffff;
+	padding-right: 10px;
+	padding-left: 10px;
+    /*background-color: #26A65B;*/
+    background-color: #0f1c17;
+    border: solid 3px;
+    border-color: #484a4a;
+    min-width: 76px;
+}
+
+#battery.warning:not(.charging) {
+    background-color: #0f1c17;
+    color: #ff0000;
+    border-color: #ff0000;
+}
+
+#battery.critical:not(.charging) {
+    background-color: #0f1c17;
+    color: #ffffff;
+    border-color: #ad2626;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+#tooltip {
+    background-color: #181818;
+}
+
+#tray {
+    padding-left: 16px;
+    padding-right: 16px;
+	margin-right: 8px;
+    border-radius: 20px 10px 10px 5px;
+    border: solid 3px;
+    border-color: #484a4a;
+    transition: background 0.3s ease,
+	border-radius 0.3s ease;
+    color: #ffffff;
+    background: #0f1c17;
+}
+
+#tray:hover {
+	border-radius: 5px 20px 5px 20px;
+	background: #484a4a;
+}
+
+#custom-recorder {
+	padding-left: 10px;
+	padding-right: 10px;
+	border-radius: 20px 20px 20px 20px;
+	border: solid 3px;
+	border-color: #484a4a;
+    color: #ffffff;
+    background: #0f1c17;
+}
+
+#custom-recorder.recording {
+	animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+@keyframes blink {
+    to {
+        background-color: #eb4034;
+        color: #484a4a;
+    }
 }
